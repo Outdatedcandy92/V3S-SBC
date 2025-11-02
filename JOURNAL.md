@@ -6,11 +6,7 @@
   ==================================================================
 -->
 
-This is my journal of the design and building process of **Allwinner V3s SBC**.  
-You can view this journal in more detail on **Hack Club Blueprint** [here](https://blueprint.hackclub.com/projects/38).
-
-
-## 10/3/2025 - Initial Planning & Schematics  
+## 10/2/2025 - Initial Planning & Schematics  
 
 Did a lot of initial planning and research today about the Allwinner V3S. I researched about a lot of SoCs but the V3s was my top choice due it having embedded DRAM and its availability on JLCPCB.
 
@@ -23,6 +19,119 @@ I also started working on its schematics today. So far I've only labeled and set
 ![image.png](https://blueprint.hackclub.com/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTM2LCJwdXIiOiJibG9iX2lkIn19--3ad72e337529938395a419ed88e164ce82d9ca71/image.png)
 
 
+
+  
+
+## 10/6/2025 - Power and Peripherals  
+
+Added a Buck Boost and a LDO to create the 4 voltage rails required for the V3S. 1.2v for core, 1.8v for DRAM, 3.0v and 3.3v for peripherals. 
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Nzc4LCJwdXIiOiJibG9iX2lkIn19--afb2fb2ec08349c86cc16f217b65f1cff8f6c136/image.png)
+
+
+Also added up the low power and rtc crystal for the V3S. It took a while to find out the correct part for the crystals. I also added a SD Card on the SDIO Interface for boot.
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Nzc3LCJwdXIiOiJibG9iX2lkIn19--eef0281da22a29318d696a07b5059cb560386791/image.png)
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NzgyLCJwdXIiOiJibG9iX2lkIn19--014fce70a09cd9980faa2263d9ff8ecbd199bd4a/image.png)
+  
+
+## 10/11/2025 - More Peripherls + Layout  
+
+I added ESD protection diodes on the SDIO lines for the SD card.
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTcxMSwicHVyIjoiYmxvYl9pZCJ9fQ==--dfe0f2968a646a64d4ce8a3752620669b0965d7f/image.png)
+
+And I also spent probably like 2 hours trying to find an IC that I could use to integrate wifi on my board and so far I've had no luck. 
+Realtek had a lot of cheap chips but had shit documentation which was very to understand, the rest of the chips were either not in stock on JLC or just straight up too big to fit on the board. So I decided to skip over wifi for now and I'll maybe come back and consider Realtek later.
+
+I did however add the MIPI CSI header for interfacing cameras, I copied the pinout of the headers from the Raspberry Pis and I used the 15 pin version. Its a 1mm pitch right angle lower contact FPC connector.
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTcxMiwicHVyIjoiYmxvYl9pZCJ9fQ==--c975db478ac0ab843cc92bcd228599b7b26a9398/image.png)
+
+I also did a little bit of PCB Layout just to see how everything goes together and so far its looking pretty packed. I'm not even sure if I'd be able to fit everything in this tiny space.
+
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTcxMywicHVyIjoiYmxvYl9pZCJ9fQ==--061313d87165a605248495c4c0d70dde9511cf59/image.png)
+
+
+
+
+  
+
+## 10/15/2025 - Finished Schematics (Almost)  
+
+I did a lott of work since the last devlogs.
+Here's a list of updates to the schematics
+- Added SII9022ACNU which is used to convert the parallel RGB output from the V3s to HDMI
+- Added a HDMI port (duh)
+- Changed my CSI connector from a 15pin 1mm pitch to a 22pin 0.5mm pitch to save space
+- Wired up an Ethernet Receptacle
+- Sorted up and organized my schematic, neatly and nicely!
+
+This is what the final schematic looks like!
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjQyMSwicHVyIjoiYmxvYl9pZCJ9fQ==--5acd79fee05bddf8ecbe8b920a0d990263460bc8/image.png)
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjQyMiwicHVyIjoiYmxvYl9pZCJ9fQ==--626ce8971b8e18884b92a656faba170dc53cf6d6/image.png)
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjQyMywicHVyIjoiYmxvYl9pZCJ9fQ==--c957be3ee42e7252e181df08a9f6a70661b1e0cd/image.png)
+
+   
+
+## 10/25/2025 - Did some off camera mining  
+
+Well uhh as the title says I might have done some off camera mining :D I was slightly busy these past weeks and my work was mostly done in small chunks, but I locked in yesterday and today and spent the entire day working on the PCB and I have my first essential routing completed! (just missing gpio)
+
+This is what my glorious board look like!
+
+*front side*
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU3MCwicHVyIjoiYmxvYl9pZCJ9fQ==--5242b89b2d86e503334ef289e2fe85b752b45940/image.png)
+*back side*
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU3MSwicHVyIjoiYmxvYl9pZCJ9fQ==--318523d2ed9583f2de778f895f00a30af44ef655/image.png)
+
+And this is what my PCB looks like
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU3MiwicHVyIjoiYmxvYl9pZCJ9fQ==--74590d5630f5b2e77dee82a7dc44f2c0c4d2708e/image.png)
+
+
+Instead of going over everything I'll just give you a rundown of the important stuff.
+
+Firstly I switched over from a 4 layer board to a 6 layer board. I initially went with 4 layers just for the challenge, but very quickly realized upgrading to a 6 layer is basically a no brainer as theres only a ~$20 difference plus I get free capped vias and ENIG. Going 6 layers also gave me an additional plane that I could dedicate just for power and another plane just for signals.
+The Stackup I went with was-
+- SIG
+- GND
+- PWR
+- SIG
+- GND
+- SIG
+
+The most time consuming part of my board was definitely the routing out the power plane as I had around 7 different power rails (9 if you include the USB and its inrush limited output). Routing out a plane with 9 different rails was certainly not easy but it  was kinda fun and the results in the end were also amazing imo.
+
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU3NywicHVyIjoiYmxvYl9pZCJ9fQ==--9f0beacffb056828909fe3a8906ebb57ecc1615e/image.png)
+
+Honestly this could have been done with 4 power rails but the `SII9022ACNU` recommended that I filter out the power rail for it.
+
+On the topic of the RGB to HDMI IC,routing out the parallel RGB signals was very fun and I think the end results look very pretty!
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU3OSwicHVyIjoiYmxvYl9pZCJ9fQ==--eaa8476f5d3e0cfa502eca8864fe9a6abc85ce7b/image.png)
+
+
+Going back to power, finding a small Inductor for my PMIC was kinda hard. I had to make compromise DCR in order to get a smaller footprint for the inductor so it could actually fit on my board
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU4MCwicHVyIjoiYmxvYl9pZCJ9fQ==--d33368bb54cc43352120b4944fa52702c7f89d59/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU4MSwicHVyIjoiYmxvYl9pZCJ9fQ==--0dac8d413caaa58d6a34412ff763045a1da8c157/image.png)
+
+That's basically everything major I did so far. I'll just add a few more screenshots for fun here!
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU4MiwicHVyIjoiYmxvYl9pZCJ9fQ==--0b0970dbf0b257090b70ba25fcca03cd62c1fa11/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU4MywicHVyIjoiYmxvYl9pZCJ9fQ==--d6c3d52a081c20b0e7c36c6948e28c2a4ff9b4bf/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTU4NCwicHVyIjoiYmxvYl9pZCJ9fQ==--455591569f358ebf94686df90a46f3c04180841a/image.png)
+
+I'll most likely share my PCB in r/printedcircuitboard for feedback as I'm very confident that there are a few mistakes in my board that I'm not smart enough to catch right now
+
+
+
+
+  
+
+## 11/2/2025 - Routed GPIO  
+
+Finally routed up the GPIO and my PCB is basically finished now! All I need to do now is to just make a post on reddit and ask for feedback or improvements.
+
+Anyways this is how my PCB looks now!
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzgzMCwicHVyIjoiYmxvYl9pZCJ9fQ==--5417b7f1fbabe5275fbf5b493dc4a288bda5a06b/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzgzMSwicHVyIjoiYmxvYl9pZCJ9fQ==--6d1e891e03d7c3a32879b9c2bdf7b1f944ea8d20/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzgzMiwicHVyIjoiYmxvYl9pZCJ9fQ==--e032da460ee0947ff7f55aba848e6b5dac97017d/image.png)
+
+The V3s unfortunately does not have a lot of GPIO pins so I had to route out and connect my CSI signals to the GPIO and basically share them with the V3s and the GPIO.
 
   
 
