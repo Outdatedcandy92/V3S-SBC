@@ -135,3 +135,10 @@ The V3s unfortunately does not have a lot of GPIO pins so I had to route out and
 
   
 
+## 11/9/2025 - Fixed the PCB + BOM  
+
+Made a reddit post last week, did not get a lot of feedback :sob: but the main feedback was about my CSI differential pairs being too close to each other and not having pairs length matched relative to the clock pair. I fixed both those issues by moving a few vias around and rerouting the CSI data lines.
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTkwMSwicHVyIjoiYmxvYl9pZCJ9fQ==--1b248eb24f7f3d5cd36fa90a0fa8c280f269357e/image.png)
+
+I also probably spent about an hour just assigning parts (i hated it) but in the end all my components finally have a JLC part assigned to them. Also taking a look at JLC, the PCB currently costs around $150 for 2 PCBA which is honestly good and cheaper than what I expected  
+
