@@ -6,5 +6,5 @@ A single board computer that uses the Allwinner V3s
 
 
 
-Allwinner V3s (Cortex-A7 1.2GHz, 64MB integrated DDR2)
-SII9022ACNU converting parallel RGB to HDMI
+Allwinner V3s (Cortex-A7 1.2GHz, 64MB integrated DDR2) with SII9022ACNU converting parallel RGB to HDMI output!
+
