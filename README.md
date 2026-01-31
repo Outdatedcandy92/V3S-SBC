@@ -1,6 +1,6 @@
 # V3S-SBC
 
-![img](https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e34344e3d60e9e665c9a9af3b323eb15459bb57_3d_pcb1_2025-11-09.png)
+![image](https://cdn.2008000.xyz/cdn/31-01-2026%2Fa1e874e3_image.jpeg)
 
 A single board computer that uses the Allwinner V3s
 

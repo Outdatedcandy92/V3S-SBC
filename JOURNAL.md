@@ -222,7 +222,7 @@ I decided to not further botch the board and just order a new pair of V3S and th
 ## Time Spent: 3 Hours
 
 
-# 20 January, 2025 - Board Working!!!
+# 20 January, 2026 - Board Working!!!
 
 
 I know it's been a while but I was waiting to bundle up my V3S and correct LDO with other parts from LCSC to save on shipping.
@@ -264,7 +264,7 @@ I was pretty relieved and called it a day. I'll work on installing the kernel on
 
 ## Time Spent: 2.5 Hours
 
-# 23 January, 2025 - Mini Heart Attack
+# 23 January, 2026 - Mini Heart Attack
 
 I was retroactively writing the journals today, and I wanted to get screenshots of the USB device in device manager and usbipd, so I plugged in my board and tried to recreate it but nothing showed up, no usb device was detected.
 
@@ -287,3 +287,48 @@ It finally showed up as a USB device on windows device manager and showed up in 
 My guess is that a small piece of solder shorted something and by cleaning the board I might have removed the problem? that's my most plausible theory on what happened and why it happened.
 
 ## Time Spent: 2 Hours
+
+# 28 January, 2026 - U-Boot
+
+I have zero prior experience in embedded linux bringup so this was pretty tough for me. I was basically lost and had no idea where to start from. But luckily I few people made blog posts on how they bringup their V3s boards and so I referred to them and google for general help.
+
+Here are some helpful articles/blogs I used.
+
+- [Lichee Zero u-boot Getting Started!](https://hackaday.io/project/171402-lichee-zero-u-boot-getting-started)
+- [Bringup V3s in 3 hours](https://blog.yuuta.moe/2024/10/30/v3s-in-3hrs/)
+- [Lichee Pi Zero](https://licheepizero.us/)
+
+The Lichee Pi Zero is a very popular SBC that uses the V3S SoC, so it was relatively easy to get setup and start with building a u-boot file. I followed the [Lichee Zero u-boot Getting Started!](https://hackaday.io/project/171402-lichee-zero-u-boot-getting-started) guide for most of this.
+
+
+![image](https://cdn.2008000.xyz/cdn/31-01-2026%2F7908844c_image.jpeg)
+
+
+
+I did run into a brick wall when trying to build the image as I kept getting this error
+
+![image](https://cdn.2008000.xyz/cdn/31-01-2026%2F3c367eb9_image.png)
+
+This was pretty frustrating as I couldn't really find why this was going on and why armv5 was the target when it was specified as armv7 everywhere, after a bit of back and forth with perplexity. It just suggested I use `sed -i 's/-march=armv5/-march=armv7-a/g' ./arch/arm/Makefile` to search and replace the bad armv5 flag and it worked. However there was now another error where `binman` couldn't be found and it turns out it was because it depended on python 2 which was an easy fix.
+
+After a few more errors and debugging sessions with perplexity I finally successfully complied the u-boot file and used sunxi-fel to load the SPL into RAM using FEL with the following command:
+
+`sunxi-fel -v uboot u-boot-sunxi-with-spl.bin`
+
+This worked out nicely and I could see the u-boot logs on my serial port!!
+
+![image](https://cdn.2008000.xyz/cdn/31-01-2026%2Fbef76c18_image.png)
+
+I tried to start the USB inside uboot but it threw a No controllers found. But that was okay as I can just work on fixing that later.
+
+![image](https://cdn.2008000.xyz/cdn/31-01-2026%2F0d4cc310_image.png)
+
+
+A little side note here, my board was genuinely tweaking out the entire time. It would show up as a USB device but then after some time like 30 or 40 minutes it would disappear and would not show up till I spray the board with IPA and brush it off. I have no idea why this keeps happening and no idea why this fixes it but If I were to make a guess it'd be that the board probably absorbs moisture and stops working!?
+
+
+After successfully getting uboot to work by flashing it to RAM, it was now time for me to make it a bit more permanent and use and SD card. I connected an SD card but passing it to WSL was pretty problematic and I was tired, so I hopped on my other debian laptop, and tried building the uboot spl again but got a shit ton of errors so I just ended up using the one I already built on WSL.
+After flashing the SD card with the uboot spl, I plugged it in and nothing happened. There were no UART logs or anything which was a bad sign, it meant that it was definitely not in uboot. I tried flashing to the RAM and it worked again but as soon as I plug the SD card in the UART just stops. Which again I have no idea why that's happening, and I was pretty tired so I decided to wrap it up for the day and continue with this some other day.
+
+
+## Time Spent: 5 Hours
