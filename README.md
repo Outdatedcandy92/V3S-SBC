@@ -30,8 +30,8 @@ The board uses Lichee Pi Zero's `.dtb` file with minimal changes. Which I'll be 
 
 ## Bring up
 
-	I'll be releasing a more detailed bring up guide once I successfully get the board to fully work.
-	
+>I'll be releasing a more detailed bring up guide once I successfully get the board to fully work.
+
 The board has been successfully brought up using FEL. U-Boot can be loaded into RAM and executed, but SD card boot is not yet functional.
 
 #### Loading U-Boot via FEL
