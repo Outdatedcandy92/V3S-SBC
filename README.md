@@ -2,14 +2,12 @@
 
 A single board computer that uses the Allwinner V3s (Cortex-A7 1.2GHz, 64MB integrated DDR2) with SII9022ACNU converting parallel RGB to HDMI output!
 
-
-![](attachments/20260102_115937%201.jpg)
+![](attachments/20260102_115937.jpg)
 
 I designed it as a minimal Linux-capable SBC, serving as a precursor to a digital camera project.  
 
 The full design and build journey can be found in `Journal.md`.
 
----
 ## Features
 
 - Allwinner V3s SoC (Cortex-A7 1.2GHz)
@@ -20,7 +18,6 @@ The full design and build journey can be found in `Journal.md`.
 - MIPI-CSI 
 - Raspberry Pi Zero Form Factor (Not pin compatible)
 
----
 ## Status
 
 The board is confirmed to be working (partially). 
@@ -31,7 +28,6 @@ The U-Boot with SPL file can be found under `/src/U-BOOT`
 
 The board uses Lichee Pi Zero's `.dtb` file with minimal changes. Which I'll be adding soon after testing.
 
----
 ## Bring up
 
 	I'll be releasing a more detailed bring up guide once I successfully get the board to fully work.
@@ -49,7 +45,6 @@ sunxi-fel uboot u-boot-sunxi-with-spl.bin
 After successfully flashing, U-Boot should appear over UART0 at 115200 baud.
 
 
----
 ## Hardware
 ### Schematic
 
@@ -57,7 +52,7 @@ After successfully flashing, U-Boot should appear over UART0 at 115200 baud.
 
 ![](attachments/zen_vZy3uUb4WV.png)
 
-![](./attachments/zen_NW10EZYshk%202.png)
+![](attachments/zen_QNvHX0VNyg.png)
 
 ### PCB
 
@@ -65,9 +60,9 @@ After successfully flashing, U-Boot should appear over UART0 at 115200 baud.
 
 ### Pinout
 
-![[attachments/Letter - 5.png]]
+![](attachments/Letter%20-%205%201.png)
 
----
+
 ## License
 
 This project is licensed under the CERN Open Hardware Licence Version 2 Weakly Reciprocal [(CERN OHL W)](LICENSE.txt)
