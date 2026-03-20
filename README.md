@@ -3,7 +3,7 @@
 A single board computer that uses the Allwinner V3s (Cortex-A7 1.2GHz, 64MB integrated DDR2) with SII9022ACNU converting parallel RGB to HDMI output!
 
 
-![image](../attachments/image-1774026477364-bfqpaxp07.jpeg)
+![](attachments/20260102_115937%201.jpg)
 
 I designed it as a minimal Linux-capable SBC, serving as a precursor to a digital camera project.  
 
@@ -53,12 +53,15 @@ After successfully flashing, U-Boot should appear over UART0 at 115200 baud.
 ## Hardware
 ### Schematic
 
-![[attachments/zen_zC6dwqYqu2.png]]
-![[attachments/zen_vZy3uUb4WV.png]]
-![[attachments/zen_NW10EZYshk 2.png]]
+![](./attachments/zen_zC6dwqYqu2.png)
+
+![](attachments/zen_vZy3uUb4WV.png)
+
+![](./attachments/zen_NW10EZYshk%202.png)
+
 ### PCB
 
-![image](../attachments/image-1774026477418-6kpi9sn3o.png)
+![](attachments/zen_EIOp4XHe8l.png)
 
 ### Pinout
 

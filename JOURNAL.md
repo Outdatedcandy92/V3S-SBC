@@ -7,8 +7,8 @@ My plan with this project is to make my own SBC in a Raspberry Pi Zero form fact
 In addition to reading the V3s datasheet I also worked on researching ICs for my video output (the V3s does not have a HDMI PHY so I'll need a RGB to HDMI bridge), and an IC for wifi.
 
 I also started working on its schematics today. So far I've only labeled and setup my power rails for the V3s
-![image.png](../attachments/image-1774026500469-0rt1n09p0.png)
-![image.png](../attachments/image-1774026500486-3v2ubhjdj.png)
+![image.png](attachments/image-1774026500469-0rt1n09p0.png)
+![image.png](attachments/image-1774026500486-3v2ubhjdj.png)
 
 
 ## Time Spent: 3 Hours
@@ -17,12 +17,12 @@ I also started working on its schematics today. So far I've only labeled and set
 # 6 October, 2025 - Power and Peripherals  
 
 Added a Buck Boost and a LDO to create the 4 voltage rails required for the V3S. 1.2v for core, 1.8v for DRAM, 3.0v and 3.3v for peripherals. 
-![image.png](../attachments/image-1774026500498-3g9ql54fq.png)
+![image.png](attachments/image-1774026500498-3g9ql54fq.png)
 
 
 Also added up the low power and rtc crystal for the V3S. It took a while to find out the correct part for the crystals. I also added a SD Card on the SDIO Interface for boot.
-![image.png](../attachments/image-1774026500521-r7t4j63sp.png)
-![image.png](../attachments/image-1774026500532-7kjvfelmv.png)
+![image.png](attachments/image-1774026500521-r7t4j63sp.png)
+![image.png](attachments/image-1774026500532-7kjvfelmv.png)
   
 
 ## Time Spent: 2 Hours
@@ -31,17 +31,17 @@ Also added up the low power and rtc crystal for the V3S. It took a while to find
 # 11 October, 2025 - More Peripherls + Layout  
 
 I added ESD protection diodes on the SDIO lines for the SD card.
-![image.png](../attachments/image-1774026500549-jqxvsb0fl.png)
+![image.png](attachments/image-1774026500549-jqxvsb0fl.png)
 
 And I also spent probably like 2 hours trying to find an IC that I could use to integrate wifi on my board and so far I've had no luck. 
 Realtek had a lot of cheap chips but had shit documentation which was very to understand, the rest of the chips were either not in stock on JLC or just straight up too big to fit on the board. So I decided to skip over wifi for now and I'll maybe come back and consider Realtek later.
 
 I did however add the MIPI CSI header for interfacing cameras, I copied the pinout of the headers from the Raspberry Pis and I used the 15 pin version. Its a 1mm pitch right angle lower contact FPC connector.
-![image.png](../attachments/image-1774026500561-mmpswanhy.png)
+![image.png](attachments/image-1774026500561-mmpswanhy.png)
 
 I also did a little bit of PCB Layout just to see how everything goes together and so far its looking pretty packed. I'm not even sure if I'd be able to fit everything in this tiny space.
 
-![image.png](../attachments/image-1774026501081-64xxkup71.png)
+![image.png](attachments/image-1774026501081-64xxkup71.png)
 
 
 
@@ -59,9 +59,9 @@ Here's a list of updates to the schematics
 - Sorted up and organized my schematic, neatly and nicely!
 
 This is what the final schematic looks like!
-![image.png](../attachments/image-1774026501634-8g70xw068.png)
-![image.png](../attachments/image-1774026502156-5kwmfedcn.png)
-![image.png](../attachments/image-1774026502650-apjlscat3.png)
+![image.png](attachments/image-1774026501634-8g70xw068.png)
+![image.png](attachments/image-1774026502156-5kwmfedcn.png)
+![image.png](attachments/image-1774026502650-apjlscat3.png)
 
    
 ## Time Spent: 8 Hours
@@ -74,12 +74,12 @@ Well uhh as the title says I might have done some off camera mining :D I was sli
 This is what my glorious board look like!
 
 *front side*
-![image](../attachments/image-1774026503281-4baiu9c8f.png)
+![image](attachments/image-1774026503281-4baiu9c8f.png)
 *back side*
-![image](../attachments/image-1774026504051-rs25kps7s.png)
+![image](attachments/image-1774026504051-rs25kps7s.png)
 
 And this is what my PCB looks like
-![image](../attachments/image-1774026504591-v19p9r2q7.png)
+![image](attachments/image-1774026504591-v19p9r2q7.png)
 
 
 Instead of going over everything I'll just give you a rundown of the important stuff.
@@ -95,22 +95,22 @@ The Stackup I went with was-
 
 The most time consuming part of my board was definitely the routing out the power plane as I had around 7 different power rails (9 if you include the USB and its inrush limited output). Routing out a plane with 9 different rails was certainly not easy but it  was kinda fun and the results in the end were also amazing imo.
 
-![image](../attachments/image-1774026505051-nqxc4214q.png)
+![image](attachments/image-1774026505051-nqxc4214q.png)
 
 Honestly this could have been done with 4 power rails but the `SII9022ACNU` recommended that I filter out the power rail for it.
 
 On the topic of the RGB to HDMI IC,routing out the parallel RGB signals was very fun and I think the end results look very pretty!
-![image](../attachments/image-1774026505545-voi4zy943.png)
+![image](attachments/image-1774026505545-voi4zy943.png)
 
 
 Going back to power, finding a small Inductor for my PMIC was kinda hard. I had to make compromise DCR in order to get a smaller footprint for the inductor so it could actually fit on my board
-![image](../attachments/image-1774026506240-5dis1nz5d.png)
-![image](../attachments/image-1774026506756-5d04udzwk.png)
+![image](attachments/image-1774026506240-5dis1nz5d.png)
+![image](attachments/image-1774026506756-5d04udzwk.png)
 
 That's basically everything major I did so far. I'll just add a few more screenshots for fun here!
-![image](../attachments/image-1774026507172-ij95lrf6r.png)
-![image](../attachments/image-1774026507727-290jzkkno.png)
-![image](../attachments/image-1774026508410-5zkzmgwfe.png)
+![image](attachments/image-1774026507172-ij95lrf6r.png)
+![image](attachments/image-1774026507727-290jzkkno.png)
+![image](attachments/image-1774026508410-5zkzmgwfe.png)
 
 I'll most likely share my PCB in r/printedcircuitboard for feedback as I'm very confident that there are a few mistakes in my board that I'm not smart enough to catch right now
 
@@ -124,9 +124,9 @@ I'll most likely share my PCB in r/printedcircuitboard for feedback as I'm very 
 Finally routed up the GPIO and my PCB is basically finished now! All I need to do now is to just make a post on reddit and ask for feedback or improvements.
 
 Anyways this is how my PCB looks now!
-![image](../attachments/image-1774026508981-s6c759an3.png)
-![image](../attachments/image-1774026509544-nhj8ccf52.png)
-![image](../attachments/image-1774026510096-n4awb6d1o.png)
+![image](attachments/image-1774026508981-s6c759an3.png)
+![image](attachments/image-1774026509544-nhj8ccf52.png)
+![image](attachments/image-1774026510096-n4awb6d1o.png)
 
 The V3s unfortunately does not have a lot of GPIO pins so I had to route out and connect my CSI signals to the GPIO and basically share them with the V3s and the GPIO.
 
@@ -138,7 +138,7 @@ The V3s unfortunately does not have a lot of GPIO pins so I had to route out and
 
 Made a reddit post last week, did not get a lot of feedback :sob: but the main feedback was about my CSI differential pairs being too close to each other and not having pairs length matched relative to the clock pair. I fixed both those issues by moving a few vias around and rerouting the CSI data lines.
 
-![image](../attachments/image-1774026510604-5qrkpcqj7.png)
+![image](attachments/image-1774026510604-5qrkpcqj7.png)
 
 I also probably spent about an hour just assigning parts (i hated it) but in the end all my components finally have a JLC part assigned to them. Also taking a look at JLC, the PCB currently costs around $150 for 2 PCBA which is honestly good and cheaper than what I expected  
 
@@ -148,17 +148,17 @@ I also probably spent about an hour just assigning parts (i hated it) but in the
 
 I finally got my board delivered today! I was pretty excited to test them out but also nervous because what if they didn't work.
 
-![image](../attachments/image-1774026510930-y1lrbw981.png)
+![image](attachments/image-1774026510930-y1lrbw981.png)
 
 Before plugging in power I took my multimeter and probed all the various test points on the back to check for continuity and to check if any of them were shorted together, luckily I designed it correctly so nothing was wrong.
 
-![image](../attachments/image-1774026511013-8npt5yo5a.jpeg)
+![image](attachments/image-1774026511013-8npt5yo5a.jpeg)
 
 I plugged it into my laptop and expected a USB device or something to show up but nothing happened. At this point I figured I might be a bit cooked. So I took out my test probe and attached to boards UART interface. I hooked the UART pins up to a USB to UART board I had and connected it to my computer and then reconnected the board, expecting to see something on putty, but again nothing happened. 
 
 *Recreation (I was too locked in when this was happening and forgot to take pictures)*
 
-![image](../attachments/image-1774026511097-pvc69t2nd.jpeg)
+![image](attachments/image-1774026511097-pvc69t2nd.jpeg)
 
 
 
@@ -172,7 +172,7 @@ Long story short the activity I saw on the scope was likely just noise which I t
 
 *Troubleshooting the Board*
 
-![image](../attachments/image-1774026511182-35yimvutw.jpeg)
+![image](attachments/image-1774026511182-35yimvutw.jpeg)
 
 If I remember correctly I think the board sometimes did show up as a unrecognized USB device. And the V3S by default starts up in USB FEL mode if no boot media is detected so I though maybe I should try and see that. I tried installing sunxi-tools and testing USB FEL but it showed no FEL devices on windows, I tried it on Linux too but had no success, heck I even tried using WSL but it didn't work.
 
@@ -182,12 +182,12 @@ But then I was just probing the voltage rails again when I noticed something tha
 
 So I forgot to mention this in my last journal entry but on my reddit post one commenter recommend I should switch to a better LDO.
 
-![image](../attachments/image-1774026511230-mldkbckjv.png)
+![image](attachments/image-1774026511230-mldkbckjv.png)
 
 
 And so I did switch the LP5907 last minute but what I didn't care to realize was that I accidentally selected the 3.3v output variant and not 3.0v.
 
-![image](../attachments/image-1774026511272-6j1bd629g.png)
+![image](attachments/image-1774026511272-6j1bd629g.png)
 
 And this little mistake cooked me and wasted so much of my time, I pretty much spent my entire day trying to figure out why it wasn't working and I somehow overlooked the main reason. I don't know how I didn't realize my analog rail was outputting the wrong voltage.
 
@@ -203,18 +203,18 @@ Since I now knew that the reason for my board not working was due to incorrect v
 
 I first started off my cutting off the LDO's output pin.
 
-![img](../attachments/image-1774026511369-uybyaq3ka.jpg)
+![img](attachments/image-1774026511369-uybyaq3ka.jpg)
 
 
 And then on the back I soldered a wire onto the 3.0V test pad to inject the correct voltage and test it. Now unfortunately I did not have a variable PSU and I was pretty tired and decided to derive 3.0V from a voltage divider, which was a dumb idea because a voltage divider is a poor voltage source as the output voltage changes depending on the load resistance. So obviously the board still did not boot.
 I did try and use my raspberry pico as a makeshift multimeter by using its ADC pins to detect and report average voltage, and I used this to check the voltage and fine tune my resistor divider based on the load.
 
 
-![image](../attachments/image-1774026511470-mhd85gvur.jpeg)
+![image](attachments/image-1774026511470-mhd85gvur.jpeg)
 
 Looking at the datasheet for the V3S and scrolling all the way down to the Electrical Characteristic of the chip, you can see that the max voltage for the PLL and analog rail is 3.3V, which probably meant that our SoC most likely got destroyed when we fed it 3.3v.
 
-![image](../attachments/image-1774026511513-rp4kp2gtn.png)
+![image](attachments/image-1774026511513-rp4kp2gtn.png)
 
 
 I decided to not further botch the board and just order a new pair of V3S and the correct LDO and manually replace them myself later on.
@@ -229,7 +229,7 @@ I know it's been a while but I was waiting to bundle up my V3S and correct LDO w
 
 *Blurry ahh picture*
 
-![image](../attachments/image-1774026511603-vtuf9co9x.jpeg)
+![image](attachments/image-1774026511603-vtuf9co9x.jpeg)
 
 
 I took my board and put it on a hotplate and replaced the old V3S and LDO with new parts.
@@ -237,7 +237,7 @@ I took my board and put it on a hotplate and replaced the old V3S and LDO with n
 
 *Reenactment (I was too locked in to take pictures when I was doing it)*
 
-![image](../attachments/image-1774026511684-nzzhutqh9.jpeg)
+![image](attachments/image-1774026511684-nzzhutqh9.jpeg)
 
 
 But I wasn't done just yet, I had to touch up the soldering and fix any bridges. I wore my magnifying glasses and inspected the V3s pins, and say a lot of bridges.
@@ -252,13 +252,13 @@ I crossed my fingers and plugged in my board to my laptop and I hear the USB dev
 
 *Reenactment* 
 
-![image](../attachments/image-1774026511733-fwumn00ui.png)
+![image](attachments/image-1774026511733-fwumn00ui.png)
 
 I used usbipd to basically attach this USB to WSL, and inside WSL I has sunxi-tools installed and I used lsusb and I saw the Allwinner SoC descriptor.
 
-![image](../attachments/image-1774026511791-sbjejyyv0.png)
+![image](attachments/image-1774026511791-sbjejyyv0.png)
 
-![image](../attachments/image-1774026511832-idxgylylg.png)
+![image](attachments/image-1774026511832-idxgylylg.png)
 
 I was pretty relieved and called it a day. I'll work on installing the kernel on it when I finish my exams
 
@@ -280,9 +280,9 @@ I decided the best way to debug would be to check UART, but I didn't have my fla
 It finally showed up as a USB device on windows device manager and showed up in FEL mode when I checked in WSL.
 
 
-![image](../attachments/image-1774026511873-j3yzvc8ck.png)
+![image](attachments/image-1774026511873-j3yzvc8ck.png)
 
-![image](../attachments/image-1774026511919-k94maa5fq.png)
+![image](attachments/image-1774026511919-k94maa5fq.png)
 
 My guess is that a small piece of solder shorted something and by cleaning the board I might have removed the problem? that's my most plausible theory on what happened and why it happened.
 
@@ -301,15 +301,15 @@ Here are some helpful articles/blogs I used.
 The Lichee Pi Zero is a very popular SBC that uses the V3S SoC, so it was relatively easy to get setup and start with building a u-boot file. I followed the [Lichee Zero u-boot Getting Started!](https://hackaday.io/project/171402-lichee-zero-u-boot-getting-started) guide for most of this.
 
 
-![image](../attachments/image-1774026512002-53oopv7qb.jpeg)
+![image](attachments/image-1774026512002-53oopv7qb.jpeg)
 
 
 
 I did run into a brick wall when trying to build the image as I kept getting this error
 
-![image](../attachments/image-1774026512049-z82squkiv.png)
+![image](attachments/image-1774026512049-z82squkiv.png)
 
-This was pretty frustrating as I couldn't really find why this was going on and why armv5 was the target when it was specified as armv7 everywhere, after a bit of back and forth with perplexity. It just suggested I use `sed -i 's/-march=armv5/-march=armv7-a/g' ./arch/arm/Makefile` to search and replace the bad armv5 flag and it worked. However there was now another error where `binman` couldn't be found and it turns out it was because it depended on python 2 which was an easy fix.
+This was pretty frustrating as I couldn't really find why this was going on and why armv5 was the target when it was specified as armv7 everywhere, after a bit of back and forth with perplexity. It just suggested I use `sed -i 's/-march=armv5/-march=armv7-a/g' ../arch/arm/Makefile` to search and replace the bad armv5 flag and it worked. However there was now another error where `binman` couldn't be found and it turns out it was because it depended on python 2 which was an easy fix.
 
 After a few more errors and debugging sessions with perplexity I finally successfully complied the u-boot file and used sunxi-fel to load the SPL into RAM using FEL with the following command:
 
@@ -317,11 +317,11 @@ After a few more errors and debugging sessions with perplexity I finally success
 
 This worked out nicely and I could see the u-boot logs on my serial port!!
 
-![image](../attachments/image-1774026512090-xakx5pfql.png)
+![image](attachments/image-1774026512090-xakx5pfql.png)
 
 I tried to start the USB inside uboot but it threw a No controllers found. But that was okay as I can just work on fixing that later.
 
-![image](../attachments/image-1774026512130-y9095war2.png)
+![image](attachments/image-1774026512130-y9095war2.png)
 
 
 A little side note here, my board was genuinely tweaking out the entire time. It would show up as a USB device but then after some time like 30 or 40 minutes it would disappear and would not show up till I spray the board with IPA and brush it off. I have no idea why this keeps happening and no idea why this fixes it but If I were to make a guess it'd be that the board probably absorbs moisture and stops working!?
@@ -347,7 +347,7 @@ I tried to reflash and try different methods of inserting the card and power cyc
 
 To test out my theory I pulled out my scope and and hooked it up to the 3V3 rail and then put a high time division of around 500ms to 2s and just looked at the voltage rail (which was a mistake), I couldn't see much drops, the rail seemed a bit noisy but everything seemed fine. The rail would occasionally have a tiny drop sometimes if I plugged in the card but not always. 
 
-![image](../attachments/image-1774026512200-jzmjmffvy.jpg)
+![image](attachments/image-1774026512200-jzmjmffvy.jpg)
 
 The reason for this inconsistent behavior was my mistake of using such a big time division, at the time of measuring it I went with a large time div just because it gave me more time to see the rail and any major events but what I didn't realize was the at such a huge time division I wouldn't be able to see the voltage spike when the SD card gets inserted because its a very tiny dip. A better choice would have been a 1ms/div or 500us/div.
 
@@ -362,21 +362,21 @@ I wasn't fully sure why my board crashed everytime I inserted an SD card, but my
 
 But luckily enough I was smart enough to put test points that expose all the pins of the SD interface, and I used the test points to sort of add botched decoupling. I soldered on a 100nF + 1uF capacitor across 3V3 and GND test point of the SD interface.
 
-![image](../attachments/image-1774026512294-ecb1b2ao3.jpg)
+![image](attachments/image-1774026512294-ecb1b2ao3.jpg)
 
 Soldering 0402s here by hand was a bit challenging but it only took me about 10 or so minutes to get right. After soldering I made sure to inspect it visually with a magnifying glass to confirm that nothing is shorted. It did look like 3v3 and clock were bridged so I pulled out some flux and fixed it.
 
 After doing this the board no longer crashed as soon as I inserted an SD card!
 Though I still had no success getting uboot running off SD card. So I had to still flash it to RAM first. But while in uboot I could now run MMC info and see my SD card show up.
 
-![image](../attachments/image-1774026512340-c9cjbjsa2.png)
+![image](attachments/image-1774026512340-c9cjbjsa2.png)
 
 
 However when trying to read the MMC it crashed the board again, I'm assuming this might be due to the fact that its a high capacity card?! I might try with a smaller 1 or 2 gb once I get them. 
 
 Anyways at this point I was ready to give up on getting SD card to work properly and just straight up boot linux from RAM, but right as I went to do it ubutu on WSL straight up died.
 
-![image](../attachments/image-1774026512384-hiuypckum.png)
+![image](attachments/image-1774026512384-hiuypckum.png)
 
 I have no idea how or why but wsl literally just killed itself.
 
